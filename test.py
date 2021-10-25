@@ -1,9 +1,12 @@
+from sub import *
+
 import sqlite3
 import sys
 
 from PyQt5.QtWidgets import QApplication, QHeaderView
 from PyQt5.QtWidgets import QWidget, QTableWidgetItem
 from PyQt5.QtWidgets import QVBoxLayout, QHBoxLayout, QTableWidget, QPushButton, QMenu
+
 from PyQt5.QtGui import QColor
 
 
@@ -34,7 +37,8 @@ class App(QWidget):
 
         # Other
 
-        self.time = dict()
+        self.all_needed_data = list()
+        self.stopFlag = Event()
 
         # Table
 
@@ -76,6 +80,7 @@ class App(QWidget):
 
     def closeEvent(self, event):
         self.file.close()
+        self.stopFlag.set()
 
     def changed(self, item):
         self.modified[self.titles[item.column()]] = [item.text(), item.row() + 1]
@@ -86,9 +91,17 @@ class App(QWidget):
         file_work.execute(que)
         self.file.commit()
         self.modified.clear()
+        self.stopFlag.set()
+        self.pushButton.setEnabled(True)
 
     def save(self):
-        pass
+        file_work = self.file.cursor()
+        res = file_work.execute('''SELECT time, track FROM main_day''').fetchall()
+        first = [list(map(lambda x: x[0], res)), list(map(lambda x: x[1], res))]
+        self.stopFlag = Event()
+        self.thread = MyThread(self.stopFlag, 0.5, first)
+        self.thread.start()
+        self.pushButton.setEnabled(False)
 
     def pr(self):
         act = self.sender()
