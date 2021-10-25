@@ -1,4 +1,4 @@
-from threading import Thread, Event
+from threading import Thread
 from playsound import playsound
 from datetime import time, datetime
 
@@ -18,4 +18,4 @@ class MyThread(Thread):
             if needed in self.data[0]:
                 ind = self.data[0].index(needed)
                 txt = self.data[0][ind]
-                
+                playsound(f'assets/audio/{txt}.mp3')

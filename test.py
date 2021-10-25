@@ -8,6 +8,7 @@ from PyQt5.QtWidgets import QWidget, QTableWidgetItem
 from PyQt5.QtWidgets import QVBoxLayout, QHBoxLayout, QTableWidget, QPushButton, QMenu
 
 from PyQt5.QtGui import QColor
+from threading import Event
 
 
 class App(QWidget):
