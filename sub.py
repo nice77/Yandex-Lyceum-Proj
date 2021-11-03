@@ -1,6 +1,7 @@
 from threading import Thread
 from playsound import playsound
 from datetime import time, datetime
+from os import path
 
 
 class MyThread(Thread):
@@ -17,5 +18,8 @@ class MyThread(Thread):
             needed = time(now.hour, now.minute)
             if needed in self.data[0]:
                 ind = self.data[0].index(needed)
-                txt = self.data[0][ind]
-                playsound(f'assets/audio/{txt}.mp3')
+                txt = self.data[1][ind]
+                if path.exists(f'assets/music/{txt}.mp3'):
+                    playsound(f'assets/music/{txt}.mp3')
+                else:
+                    playsound('assets/music/ring.mp3')
