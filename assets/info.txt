@@ -1,0 +1,33 @@
+Yandex-Lyceum-Proj: Звонителеинатор/Callinator
+
+rus:
+Небольшое служебное приложение для автоматизации процесса звонков в школе
+
+Функционал:
+- Смена тем
+- Добавление/удаление записей
+- Совершение звонков
+
+Для дальнейшей работы нужно следующее:
+- Установить необходимое количество звонков
+- Переместить в папку все нужные аудио (желательно менее десяти секунд)
+- Прописать время звонков и желаемую аудиодорожку
+- Нажать "Сохранить"
+
+
+Внимание!
+Если название трека указано неверно, то будет проигрываться обычный звонок
+
+eng:
+Simple PyQt5 app which helps to automate school rings
+
+Introduced functions:
+- Changing app's theme
+- Adding/deleting rows
+- Making, oddly enough, rings
+
+In order to work with that app you should:
+- Create rows count you need
+- Insert into special folder all audio
+- Write every time when you have to make a call
+- Press 'Save' button
