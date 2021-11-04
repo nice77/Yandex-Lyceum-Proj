@@ -23,7 +23,6 @@ class App(QWidget):
         # Layouts
 
         self.main_line = QVBoxLayout(self)
-        self.first = QHBoxLayout(self)
         self.second_line = QHBoxLayout(self)
 
         # Buttons
@@ -65,7 +64,6 @@ class App(QWidget):
 
         # Other
 
-        self.all_needed_data = list()
         self.stopFlag = Event()
 
         # Table
@@ -193,8 +191,8 @@ class App(QWidget):
                     'Delete row': 'Удалить строку',
                     'Write row': 'Добавить строку'}
         di_to_eng = {'Помощь': 'Help', 'Сохранить': 'Save',
-                    'Удалить строку': 'Delete row',
-                    'Добавить строку': 'Write row'}
+                     'Удалить строку': 'Delete row',
+                     'Добавить строку': 'Write row'}
         print(self.help_btn.text())
         if self.la == 'Русский' and self.help_btn.text() != 'Помощь':
             for i in self.buttons:
