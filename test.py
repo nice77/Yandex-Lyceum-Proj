@@ -10,6 +10,7 @@ from PyQt5.QtCore import Qt
 
 from PyQt5.QtGui import QColor
 from threading import Event
+import os
 
 
 class App(QWidget):
@@ -39,6 +40,10 @@ class App(QWidget):
         self.pushButton.setText('Сохранить')
         self.pushButton.clicked.connect(self.save)
 
+        self.game_button = QPushButton(self)
+        self.game_button.setText('Игра')
+        self.game_button.clicked.connect(self.game)
+
         self.menu = QMenu(self)
         self.menu.addAction('Light theme', self.pr)
         self.menu.addAction('Dark theme', self.pr)
@@ -60,7 +65,7 @@ class App(QWidget):
         self.help_btn.setText('Помощь')
         self.help_btn.clicked.connect(self.helper)
 
-        self.buttons = [self.add_button, self.delete_button, self.pushButton, self.help_btn]
+        self.buttons = [self.add_button, self.delete_button, self.pushButton, self.help_btn, self.game_button]
 
         # Other
 
@@ -84,6 +89,7 @@ class App(QWidget):
         self.main_line.addWidget(self.pushButton)
         self.main_line.addLayout(self.second_line)
         self.main_line.addWidget(self.help_btn)
+        self.main_line.addWidget(self.game_button)
 
         # SQL connections
 
@@ -214,6 +220,9 @@ class App(QWidget):
             dlg = CustomDialog(self.la)
             if dlg.exec():
                 self.close()
+
+    def game(self):
+        os.system('python game.py')
 
 
 class CustomDialog(QDialog):
